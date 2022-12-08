@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+    /* p {
+  animation-duration: 3s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  50% {
+    animation-name: bounce;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+} */
+
+.slidein {
+  animation-duration: 3s;
+  animation-name: slidein;
+  animation-iteration-count: 3;
+  animation-direction: alternate;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+   </style>
+</head>
+<body>
+    <main>
+        <p id="watchme">This is my main code</p>
+
+    </main>
+    <footer>
+        <p>this is the footer</p>
+        <ul id = "output"></ul>
+    </footer>
+   <script>
+     const element = document.getElementById("watchme");
+    element.addEventListener("animationstart", listener, false);
+    element.addEventListener("animationend", listener, false);
+    element.addEventListener("animationiteration", listener, false);
+
+    element.className = "slidein";
+    function listener(event) {
+        const l = document.createElement("li");
+        switch(event.type) {
+            case "animationstart":
+            l.textContent = `Started: elapsed time is ${event.elapsedTime}`;
+            break;
+            case "animationend":
+            l.textContent = `Ended: elapsed time is ${event.elapsedTime}`;
+            break;
+            case "animationiteration":
+            l.textContent = `New loop started at time ${event.elapsedTime}`;
+            break;
+  }
+  document.getElementById("output").appendChild(l);
+}
+
+   </script>
+</body>
+
+</html>
